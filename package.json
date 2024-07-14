@@ -2,6 +2,7 @@
   "name": "xdc-dapp",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://AbdurRazzak01.github.io/AssetBridge",
   "dependencies": {
     "@ethersproject/contracts": "^5.7.0",
     "@lifi/sdk": "^3.0.0",
@@ -22,7 +23,6 @@
     "web-vitals": "^2.1.4",
     "web3": "^1.10.4"
   },
-  "homepage": "http://AbdurRazzak01.github.io/AssetBridge",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
