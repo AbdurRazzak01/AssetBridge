@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AssetBridge/static/css/main.ef746dd8.css",
+    "main.js": "/AssetBridge/static/js/main.cf190eff.js",
+    "index.html": "/AssetBridge/index.html",
+    "main.ef746dd8.css.map": "/AssetBridge/static/css/main.ef746dd8.css.map",
+    "main.cf190eff.js.map": "/AssetBridge/static/js/main.cf190eff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef746dd8.css",
+    "static/js/main.cf190eff.js"
+  ]
+}
