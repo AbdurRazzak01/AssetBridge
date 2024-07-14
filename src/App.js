@@ -194,7 +194,7 @@ function App() {
   };
 
   if (!web3) {
-    return <div>Connect With Your Wallet To LogIn!</div>;
+    return <div>Loading Web3, accounts, and contract...</div>;
   }
 
   return (
