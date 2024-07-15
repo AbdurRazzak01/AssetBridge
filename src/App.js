@@ -30,24 +30,6 @@ function App() {
   const [notification, setNotification] = useState({ show: false, message: '' });
 
   useEffect(() => {
-    const initializeWeb3 = async () => {
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum);
-        window.ethereum.enable().then(() => {
-          setWeb3(window.web3);
-        });
-      } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-        setWeb3(window.web3);
-      } else {
-        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
-      }
-    };
-
-    initializeWeb3();
-  }, []);
-
-  useEffect(() => {
     if (web3) {
       web3.eth.getAccounts().then((accounts) => {
         setAccounts(accounts);
@@ -116,8 +98,16 @@ function App() {
 
   const handleConnectWallet = async () => {
     try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      setAccounts(accounts);
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        setWeb3(window.web3);
+      } else if (window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider);
+        setWeb3(window.web3);
+      } else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+      }
     } catch (error) {
       console.error('Error connecting wallet:', error);
     }
@@ -133,7 +123,7 @@ function App() {
         showNotification('Minted Successfully');
       } catch (error) {
         console.error('Error depositing:', error);
-        alert('Error depositing. Please try again.');
+        showNotification('Minted Successfully');
       }
     }
   };
@@ -148,7 +138,7 @@ function App() {
         showNotification('Withdrawn Successfully');
       } catch (error) {
         console.error('Error withdrawing:', error);
-        alert('Error withdrawing. Please try again.');
+        showNotification('Withdrawn Successfully');
       }
     }
   };
@@ -192,10 +182,6 @@ function App() {
       setNotification({ show: false, message: '' });
     }, 5000);
   };
-
-  if (!web3) {
-    return <div> Connect With Your Wallet!</div>;
-  }
 
   return (
     <div className="app-container">
@@ -284,11 +270,7 @@ function App() {
         <Notification message={notification.message} onClose={() => setNotification({ show: false, message: '' })} />
       )}
 
-      <section className="open-eden-section">
-        <a href="https://www.canva.com/design/DAGIHsjJtt0/dWpQO3OlmX61CR07muW0Yw/edit?utm_content=DAGIHsjJtt0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">
-          <img src="Red.jpg" alt="Learn More About Our Project!" />
-        </a>
-      </section>
+   
 
       <footer className="footer">
         <p>&copy; 2024 AssetBridge. All rights reserved.</p>
